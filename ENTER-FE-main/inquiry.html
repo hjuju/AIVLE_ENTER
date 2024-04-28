@@ -1,0 +1,154 @@
+<!-- 문의 작성 페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ENTER 문의 게시글 작성</title>
+
+    <!-- 글꼴 (구글 폰트 적용 ) -->
+    <link rel="preconnect"
+           href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <!-- 글꼴(팀원이 추천하신 구글 폰트 적용)-->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" 
+          rel="stylesheet">
+
+    <!--                       -->
+    <link rel="icon" 
+          href="./assets/favicon.ico">
+
+    <!-- CSS 연계 -->
+    <link rel="stylesheet"
+          href="./css/inquiry.css">
+
+    <!-- Axios CDN(Axios를 사용하기 위함) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- sweet alert -->
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Enter 로고 -->
+        <div style="height: 35px;">
+            <a href="/index.html" 
+               class="header-logo-link">
+                <img src="assets/img/ENTR_logo.png" 
+                alt="로고"
+                id="header-logo">
+            </a>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <!-- 사용자 정보 표시-->
+            <a href="/mypage.html"
+               class="header-link">
+               <h3></h3>
+            </a>
+         
+            <!-- 로그아웃 아이콘 -->
+            <button class='logout' 
+                    onclick='goLogout();'>
+                    <img src="assets/img/login_out.png" 
+                        style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+            </button>
+
+            <!-- 로그인 아이콘 -->
+            <button class='login'
+                    onclick='goLogin();'>
+                    <img src="assets/img/login_out.png" 
+                         style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+            </button>
+        </div>
+    </header>
+
+    <!-- body -->
+    <div class='card-write'>
+        <!-- 유형 -->
+        <div class="horizontal-layout" 
+             style='width:80%; margin-top:50px; display:flex; justify-content: center;  position: relative;'>
+            <p style='margin-right:10px;'>유형</p>
+
+            <select id="exampleSelect" 
+                    name="example">
+                <!-- 옵션들을 여기에 추가 -->
+            </select>
+        </div>
+
+        <!-- 제목 -->
+        <div class="horizontal-layout" 
+             style='width:80%; margin-top:50px; display:flex; justify-content: center; position: relative;'>
+            <p style='margin-top: 5px; margin-right:10px;'>제목</p>
+
+            <input id="inputBoardTitle" 
+                   placeholder="제목을 입력하세요."/>
+        </div>
+
+        <!-- 내용 -->
+        <div class="msg" 
+             style='width:80%; display:flex; margin-top:50px; justify-content: center; position: relative;'>
+            <p style='margin-top: 5px; margin-right:10px;'>내용</p>
+
+            <textarea id="inputBoardContent"
+                      placeholder="내용을 입력하세요."></textarea>
+        </div>
+
+        <!-- 파일, 목록, 작성 버튼 영역 -->
+        <div class="bottom-right" 
+             style="width:50%; display: flex; flex-direction: column; margin-top: 20px; position: relative;">
+            <!-- 파일 영역 -->
+            <div class="file-detach"
+                 style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                
+                <input type='file' 
+                        name='' 
+                        id='imageFile'
+                        accept=".png, .jpg, .jpeg"
+                        style='width:30%; margin-top: 5px; margin-left: 30px; font-family: scd;'>
+            </div>
+
+            <!-- 버튼 영역 -->
+            <div class="btn-w" 
+                 style="display: flex; justify-content: flex-end; margin-right:50px;">
+                <button id="listBtn" 
+                        style="margin-right: 10px;"
+                        onclick='goInquiryBoard()'>목록</button> <!-- 목록 버튼 -->
+
+                <button id="writeBtn"
+                        onclick="writeBoard()">작성</button> <!-- 작성 버튼 -->
+            </div>
+            
+            <!-- 간격 -->
+            <div style='height:30px;'></div>
+        </div>
+
+    </div>
+
+    <!-- JS와 연동 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/inquiry.js"></script>
+</body>
+</html>

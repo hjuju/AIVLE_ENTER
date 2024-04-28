@@ -1,0 +1,172 @@
+<!-- 문의 글에 대한 상세 페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ENTER 문의 상세보기</title>
+
+     <!-- 글꼴 (구글 폰트 적용 ) -->
+     <link rel="preconnect"
+           href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <!-- 글꼴(팀원이 추천하신 구글 폰트 적용)-->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" 
+          rel="stylesheet">
+
+    <!--                       -->
+    <link rel="icon" 
+          href="./assets/favicon.ico">
+
+    <link rel="stylesheet"
+          href="./css/inquiryDetail.css">
+
+    <style type="text/css">
+        p { margin-bottom: 0; }
+    </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- sweet alert -->
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Enter 로고 -->
+        <div style="height: 35px;">
+            <a href="/index.html"
+               class="header-logo-link">
+                <img src="assets/img/ENTR_logo.png" 
+                    alt="로고"
+                    id="header-logo">
+            </a>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <!-- 사용자 정보 표시 -->
+            <a href="/mypage.html"  class="header-link">
+                <h3></h3>
+            </a>
+
+            <!-- 로그 아웃 아이콘 -->
+            <button class='logout' onclick='goLogout();'>
+                <img src="assets/img/login_out.png" 
+                    style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+            </button>
+
+            <!-- 로그인 아이콘 -->
+            <button class='login' 
+                    onclick='goLogin();'>
+                    <img src="assets/img/login_out.png" 
+                        style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;"></button>
+        </div>
+    </header>
+
+    <!-- body -->
+    <div class="card">
+        <div class="faq">
+            <div class="faqHeader">
+                <p class="faqHeader-type">문의유형</p>
+                <p class="faqHeader-title">제목</p>
+                <p class="faqHeader-writer">작성자</p>    
+            </div>
+
+            <div class="faqItem-box">
+                <div class="faqItem-header">
+                    <div class="faqItem-info">
+                        <p class="faqItem-type"></p>
+                        <p class="faqItem-title" style="text-align: center"></p>
+                        <p class="faqItem-writer"></p>
+                    </div>
+                </div>
+                <textarea class="faqItem-content" 
+                          readonly style="width: 100%; resize:none; box-shadow: none; border: none;"></textarea>
+                <div class="faqItem-image">
+                </div>
+            </div>
+        </div>
+
+        <div class='button-section'
+             style="width: 72%; height:100px; display: flex; justify-content: flex-end; gap: 10px; margin-right: 20px;"> <!-- 글 작성자이면 보이게 하고 아니면 보이지 않게 한다.-->
+            
+            <button class="reply-button"
+                    onclick="replyButton()">답변하기</button>
+
+            <button style="display: block;" 
+                    class="list-button"
+                    onclick="goInquiryDetail();">목록</button>
+
+            <button class="edit-button"
+                    onclick="editButton()"
+                    type="button">수정</button>
+
+            <button class="delete-button"
+                    onclick="deleteButton()"
+                    type="button">삭제</button>
+        </div>
+
+        <div class="faq">
+            <div class="answer-area"
+                 id="answer-area"
+                 style="display: none;"></div>
+        </div>
+    </div>
+
+   <!-- 답변하기 모달창 -->
+   <div id="answer-modal"
+        class="modal">
+        <div class="modal-content">
+            <span class="close" 
+                  id="closeModalAnswer">&times;</span>
+            <div class="modal-screen">
+                <div class="answer-view" 
+                     id="answerView">
+                    <div>
+                        <h2>답변하기</h2>
+                        <form>
+                            <div class="field">
+                                <textarea rows="5"
+                                          id='answer_content'
+                                          placeholder="답변을 입력해주세요."
+                                          autocomplete='off'></textarea>
+                            </div>
+                            <div class="error-message" 
+                                 id="error-modal"></div>
+                            <button type="button"
+                                    class="answer-button"
+                                    onclick="answer();">답변하기</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- JS와 연동 -->
+    <script src="js/common.js"></script>
+    <script src="js/inquiryDetail.js"></script>
+</body>
+</html>

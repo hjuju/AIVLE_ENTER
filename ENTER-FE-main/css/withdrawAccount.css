@@ -1,0 +1,225 @@
+@font-face {
+    font-family: 'scd';
+    src: url('../assets/fonts/SCDream5.otf') format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+    outline: none; 
+}
+
+header {
+    width:100%; 
+    height:50px;
+    margin: 0; 
+    background-color: white; 
+    padding: 7.5px 0; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    position: relative; 
+    top: 0; 
+    left: 0; 
+    z-index: 100;
+    align-items: center; 
+    justify-content: space-between; 
+    display: flex; 
+}
+
+.header-logo-link {
+    height: 35px;
+}
+
+#header-logo {
+    height: 35px; 
+    margin-left:20px;
+    cursor: pointer;
+}
+
+.header-link {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+
+.header-link h3 {
+    transition: box-shadow 0.3s ease; 
+    font-size:13px;
+}
+
+
+header .logout, header .login {
+    background-color: transparent;
+    display: none;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+    padding: 13px;
+}
+header .logout:hover, header .login:hover {
+    background-color: transparent;
+}
+	
+
+
+body {
+    font-family: 'scd', sans-serif;
+    margin: 0;
+}
+button, label {
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+    margin: auto; 
+    padding: 0;
+    min-height: calc(100vh - 50px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contract {
+    width: 700px; 
+    margin: auto; 
+    padding: 30px 40px 50px;
+    border-radius: 30px;
+    background-color: #e9ecef; 
+}
+
+.contract h1 {text-align: center;}
+
+.contract .text {
+    background-color: white;
+    white-space: pre-line;
+    overflow-y: auto;
+    margin: 0 auto 30px;
+}
+.contract p {text-align: right;}
+
+.contract .box {
+    width: 100px;
+    height: 40px;  
+    padding: 8px;
+    margin: 0 3px;
+}
+
+.display-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+
+.btn-secondary {
+    background-color: #454997; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px; 
+    font-family: 'scd';
+    margin-left: auto;
+}
+
+.text {
+    padding : 20px;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+}
+.modal-content {
+    background-color: #fff;
+    margin: 15vh auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    height: 70vh;
+    border-radius: 10px;
+}
+.modal-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal .img-container {
+    text-align: center;
+}
+.modal img {
+    width: 80%;
+}
+.modal .modal-btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal .btn {
+    background-color: #FFF;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 30%;
+    margin: 5px;
+    font-family: 'scd';
+}
+.modal .btn:hover {
+    transition: 0.7s;
+    background-color: #454997;
+    border-color: #454997;
+    color: #FFF;
+}
+
+.check-pw {
+    width: 50%;
+    margin: 20px auto 0;
+    color: #333;
+    border-top: 1px #AAA4A4 solid;
+    align-items: center;
+    justify-content: center;
+}
+.check-pw p {
+    text-align: center;
+    font-size: 10.5px;
+    margin-bottom: 25px;
+}
+.check-pw > div {
+    width: 100%;
+}
+.check-pw input, 
+.check-pw button {
+    border: 1px solid #333;
+    font-size: 12px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-family: 'scd' !important;
+}
+.check-pw .login-button {
+    background-color: #454997;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+

@@ -1,0 +1,216 @@
+<!-- 회원 가입 페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ENTER 회원가입</title>
+
+     <!-- 글꼴 (구글 폰트 적용 ) -->
+     <link rel="preconnect"
+           href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <!-- 글꼴(팀원이 추천하신 구글 폰트 적용)-->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" 
+          rel="stylesheet">
+
+    <!--                       -->
+    <link rel="icon" 
+          href="./assets/favicon.ico">
+
+    <link rel="stylesheet"
+          href="./css/signup.css">
+
+    <!-- Axios CDN(Axios를 사용하기 위함) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- sweet alert -->
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Enter 로고 -->
+        <div style="height: 35px;">
+            <a href="/index.html" class="header-logo-link">
+                <img src="assets/img/ENTR_logo.png" 
+                     alt="로고"
+                     id="header-logo">
+            </a>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <!-- 로그인 아이콘 -->
+            <button class='login' 
+                    onclick='goLogin();'>
+                    <img src="assets/img/login_out.png" 
+                         style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+            </button>
+        </div>
+    </header>
+    
+    <!-- body-->
+    <div class="member">
+        <div class="inner">
+            <!-- '회원가입' text --> 
+            <h1 class="logo">회원가입</h1>
+
+            <!-- 2. 아이디 -->
+            <div class="field">
+                <b id='signup_id'>아이디</b>
+                <div class="input-group mb-3">
+                    <input type="text"
+                            class="form-control"
+                            id="input_id"
+                            placeholder="4~12자 영문 대소문자, 숫자로만 입력해주세요."
+                            aria-label="Username">
+                    <div class="error-message" id="error-id"></div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6 d-flex justify-content-start">
+                                <button class="btn btn-custom"
+                                        type="button"
+                                        id="check-duplicate"
+                                        onclick="checkDuplicateID()">중복 확인</button>
+                            </div>
+
+                            <div class="col-6 d-flex justify-content-end">
+                                <button class="btn btn-custom"
+                                        type="button"
+                                        id="modify-id"
+                                        onclick="modify_ID()">아이디 수정하기</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 비밀번호 -->
+            <div class="field">
+                <b>비밀번호</b>
+                <input class="userpw"
+                        id='password' 
+                        type="password"
+                        placeholder="4~12자 영문 대소문자, 숫자로만 입력해주세요.">
+                    <div class="error-message" id="error-pw"></div>
+            </div>
+
+            <div class="field">
+                <b>비밀번호 재확인</b>
+                <input class="userpw-confirm" 
+                        id='confirm_password'
+                        type="password"
+                        onkeyup="checkPasswordMatch();"
+                        placeholder="비밀번호를 한번 더 입력해주세요.">
+            </div>
+
+        <!-- '비밀번호가 일치하지 않습니다.' text -->
+        <span id="password_match" 
+                style="display: none; color: red;">비밀번호가 일치하지 않습니다.</span>
+
+            <div class="field">
+                <b>이름</b>
+                <input type="text"
+                       id="name"
+                       placeholder="이름을 입력해주세요.">
+                <div class="error-message"
+                     id="error-name"></div>
+            </div>
+
+            <!-- 회사 -->
+            <b>회사</b>
+            <select id="company_select"></select>
+        
+            <!-- 이메일 -->
+            <div class="field">
+                <b>본인 확인 이메일</b>
+                <input type="email" 
+                        id='input_email'
+                        placeholder="예: kimenter@gmail.com">
+                <div class="error-message" 
+                     id="error-email"></div>
+
+                <input type="button"
+                        class="btn"
+                        value="인증번호 받기"
+                        id='receiveVerificationCodeBtn'
+                        onclick="requestVerificationCode();">    
+            </div>
+            
+            <!-- 인증번호 -->
+            <div class="field tel-number">
+                <b>인증번호</b>
+                <div class="code_wrap">
+                    <input type="number"
+                            id='verifyCodeInput'
+                            placeholder="인증번호를 입력해주세요."
+                            disabled>
+                    <span id="timer" 
+                          class="timer-container">03:00</span>
+                </div>
+                <div class="error-message" 
+                     id="error-certi"></div>
+            </div>
+
+            <input type="submit"
+                    id='checkAuthNum'
+                    class="btn"
+                    value="인증번호 확인"
+                    style="display:none;"
+                    onclick="checkAuthNum();">
+
+            <!-- 간격 -->
+            <div style="margin-top: 40px; margin-bottom: 20px;"></div>
+            
+            <!-- '가입하기' 버튼 -->
+            <input type="submit"
+                class="btn"
+                id='signUpBtn'
+                value="가입하기"
+                onclick="signUp();"
+                disabled>
+
+            <!-- 7. 푸터 -->
+            <div class="member-footer">
+                <div>
+                    <a href="#none">이용약관</a>
+
+                    <a href="#none">개인정보처리방침</a>
+
+                    <a href="#none">책임의 한계와 법적고지</a>
+
+                    <a href="#none">회원정보 고객센터</a>
+                </div>
+
+                <span><a href="#none">ENTER Corp.</a></span>
+            </div>
+        </div>
+    </div>
+
+     <!-- JS와 연동 -->
+     <script src='/js/common.js'></script>
+     <script src="/js/signup.js"></script>
+</body>
+</html>

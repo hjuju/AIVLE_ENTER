@@ -1,0 +1,151 @@
+@font-face {
+    font-family: 'scd';
+    src: url('../assets/fonts/SCDream5.otf') format('truetype');
+}
+
+header {
+    width: 100%; 
+    height:50px;
+    margin: 0; 
+    background-color: white; 
+    position: relative;
+    padding: 7.5px 0; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    top: 0; 
+    left: 0; 
+    z-index: 100;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+p {
+    color: #454997;
+}
+
+#header-logo {
+    height: 35px;
+    margin-left: 20px;
+}
+
+.header-link {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+header .logout, header .login {
+    background-color: transparent;
+    display: none;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 13px;
+    box-shadow: none;
+}
+header .logout:hover, header .login:hover {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.header-link h3 {
+    transition: box-shadow 0.3s ease;
+    font-size: 13px;
+    margin: 0;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+	
+
+body {
+    font-family: 'scd';
+    margin: 0;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+
+*{
+    box-sizing: border-box; 
+    outline: none; 
+}
+
+p {
+    font-weight: bold;
+}
+
+
+.card-write {
+    width: 100vw; 
+    height: calc(100vh - 50px); 
+    background-color: #ffffff;
+    position: relative;
+    margin: 0 auto; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+#exampleSelect {
+    width: 50%; 
+    margin-top: 10px; 
+    margin-left: 10px;
+    border-radius: 4px; 
+    background-color: #ffffff; 
+    border: 1px solid black; 
+    font-family: 'scd';
+    padding:10px;
+    border-radius:10px;
+    box-shadow:3px 3px 10px #e6e6e6;
+  }
+
+#inputBoardTitle {
+    width: 50%; 
+    font-family: 'scd';
+    border: 1px solid black;
+    resize: none; 
+    margin-left:10px;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:3px 3px 10px #e6e6e6;
+}
+
+#inputBoardContent {
+    width: 50%;
+    height: 200px;
+    font-family: 'scd';
+    border: 1px solid black;
+    resize: none;
+
+    margin-left:10px;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:3px 3px 10px #e6e6e6;
+}
+
+#listBtn, #writeBtn {
+    background-color: #454997;
+    width:75px;
+    height: 40px;
+    border-radius: 10px;
+    color:white;
+    font-family: 'scd';
+}
+
+#listBtn:hover, #writeBtn:hover {
+    cursor: pointer; 
+}
+
+
+
+
+
+

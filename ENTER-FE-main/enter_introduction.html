@@ -1,0 +1,333 @@
+<!-- '엔터란?(Enter)' 소개 페이지 -->
+<!DOCTYPE html>
+<html lang="en">
+    <!-- head-->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <meta name="description" 
+              content="" />
+
+        <meta name="author"
+              content="" />
+
+        <title>Enter 소개</title>
+
+        <!-- 글꼴 (구글 폰트 적용 ) -->
+        <link rel="preconnect"
+              href="https://fonts.googleapis.com">
+        <link rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+              rel="stylesheet">
+
+        
+        <!-- 글꼴(팀원이 추천하신 구글 폰트 적용)-->
+        <link rel="preconnect"
+              href="https://fonts.googleapis.com">
+        <link rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" 
+              rel="stylesheet">
+       
+        <!-- Favicon-->
+        <link rel="icon"
+              type="image/x-icon"
+              href="assets/favicon.ico" />
+
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" 
+              rel="stylesheet"
+              type="text/css" />
+        
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+              rel="stylesheet"
+              type="text/css" />
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/enter_introduction.css"
+              rel="stylesheet" />
+
+        <!-- Axios CDN(Axios를 사용하기 위함) -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        
+        <!-- sweet alert -->
+        <link rel="stylesheet" 
+              href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header>
+            <!-- Enter 로고 -->
+            <div style="height: 35px;">
+                <a href="/index.html" class="header-logo-link">
+                    <img src="assets/img/ENTR_logo.png" 
+                         alt="로고"
+                         id="header-logo">
+                </a>
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                <!-- 사용자 표시 -->
+                <a href="/mypage.html" 
+                   class="header-link">
+                    <h3></h3>
+                </a>
+                
+                <!-- 로그아웃 아이콘 -->
+                <button class='logout'
+                        onclick='goLogout();'>
+                    <img src="assets/img/login_out.png" 
+                         style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+                </button>
+ 
+                <!-- 로그인 아이콘 -->
+                <button class='login' 
+                        onclick='goLogin();'>
+                        <img src="assets/img/login_out.png" 
+                             style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+                </button>
+            </div>
+        </header>
+        
+        <!-- masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page Title-->
+                            <h2 class="mb-5" style="color: #ffffff;">원하는 주제를 입력하면<br> 리서치 결과 즉시 도출<br> 간단하고 손쉬운 프롬프트 사용</h1>
+
+                            <!-- Page Subtitle-->
+                            <h3 class="mb-4"
+                                id='sonshipgae'
+                                style="color: white;">"질문을 입력하고 <span style="color: #4d41cc;">ENTER</span>만 치세요 !"</h3>
+
+                            <!-- 바로 시작하기! 버튼 -->
+                            <button id="belowPromptButton" 
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    style="margin-top: 19px;">프롬프트 사용하기</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- section1 - 서비스에 대한 핵심 요약 -->
+        <section class="features-icons bg-light text-center">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4"> <!-- Summarize Point 1-->
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex justify-content-center align-items-center" 
+                                 style="height: 100%;">
+                                <img src="assets/img/automation.png"
+                                     alt="automated"
+                                     width="100"
+                                     height="100">
+                            </div>
+
+                            <h3 style="margin-top: 20px;"
+                                id='sm_title1'>자동화</h3>
+
+                            <p class="lead mb-0"
+                               id='sm_content1'>제품 및 서비스에 대한<br> 분석, 시각화를 자동화 !</p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4"> <!-- Summarize Point 2-->
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex justify-content-center align-items-center" 
+                                 style="height: 100%;">
+                                <img src="assets/img/marketing-strategy-2.png"
+                                     alt="automated"
+                                     width="100"
+                                     height="100">
+                            </div>
+
+                            <h3 style="margin-top: 20px;"
+                                id='sm_title2'>전략 수립 체계화</h3>
+
+                            <p class="lead mb-0"
+                               id='sm_content2'>새로운 인사이트를 바탕으로<br> 전략 수립을 효율적이면서 신속하게 !</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4"> <!-- Summarize Point 3-->
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex justify-content-center align-items-center" 
+                                 style="height: 100%;">
+                                <img src="assets/img/easy-to-use.png"
+                                     alt="automated"
+                                     width="100"
+                                     height="100">
+                            </div>
+
+                            <h3 style="margin-top: 20px;"
+                                id='sm_title3'>직관적인 사용법</h3>
+
+                            <p class="lead mb-0"
+                               id='sm_content3'>프롬프트에 입력하고<br> 리서치 결과를 받기만 하면 끝 !</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- section2 - 서비스에 대한 자세한 내용 -->
+        <section class="showcase">
+            <div class="container-fluid p-0">
+                <div class="row g-0">  <!-- Point 1-->
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" 
+                         style="background-image: url('assets/img/automation_picture.png')"></div>
+
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h2 id='main_title1'>자동화</h2>
+                        <p class="lead mb-0"
+                            id='main_content1'
+                            style='white-space: normal;'>
+                            &nbsp;제품 및 서비스에 대한 만족도 조사, 시장 조사에 따른 분석, 시각화를 자동화 합니다.
+                            데이터 수집 부터 통계 도출까지 시간 소요를 줄이고, 해당 파이프라인을 수행할
+                            인적 자원 비용 그 외 비용 부담에서 크게 벗어날 수 있습니다. 
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row g-0">  <!-- Point 2-->
+                    <div class="col-lg-6 text-white showcase-img" 
+                         style="background-image: url('assets/img/startup.png')"></div>
+
+                    <div class="col-lg-6 my-auto showcase-text">
+                        <h2 id='main_title2'>전략 수립 체계화</h2>
+                        <p class="lead mb-0"
+                            id='main_content2'
+                            style='white-space: normal;'>
+                            &nbsp;새로운 인사이트를 도출하여 전략 수립을 효율적이면서<br> 신속하게 진행할 수 있습니다.
+                            개선 사항, 타겟 세분화,<br> 광고 제작 가이드, 예상 판매량 등에 대한 전략 수립이<br>
+                            가능합니다.<br>
+
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row g-0">  <!-- Point 3-->
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" 
+                         style="background-image: url('assets/img/easy_to_use.png')"></div>
+
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h2 id='main_title3'>간단하고 직관적인 사용법</h2>
+                        <p class="lead mb-0"
+                           id='main_content3'
+                           style='white-space: normal;'>
+                            &nbsp;프롬프트 페이지에 들어가세요.
+                            주제를 입력하여<br>채팅방에 들어간 후 
+                            주제와 관련된 질문하면
+                            즉시<br>리서치 결과를 받아 볼 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+      
+        <!-- section3 - 어떤 기능이 있는지에 대한 소개 -->
+        <section class="testimonials text-center bg-light">
+            <div class="container">
+                <h2 class="mb-5">ENTER 기능 소개</h2>  
+
+                <div class="row">        
+                    
+                    <div class="col-lg-4">   <!-- 기능 1 -->
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3"
+                                 src="assets/img/anaylize_computer2.png" 
+                                 alt="..."
+                                 style="border-radius: 50%; width: 200px; height: 175px; object-fit: cover;" />
+                            <h5 id='func_title1'>분석 결과 도출</h5>
+                            <p class="font-weight-light mb-0"
+                               id='func_content1'
+                               style='white-space: normal;'>
+                                Langchain 프레임워크를 사용하여
+                                다양한 제품 및 서비스에 대한 축적된 데이터를 바탕으로 LLM 모델 중 LLama2 모델과 ChatGPT 모델을 이용하여
+                                기존에 데이터를 수집하고 통계를 내는 방식으로 결과를 도출합니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="col-lg-4">    <!-- 기능 2 -->
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3" 
+                                 src="assets/img/gesipan.png"
+                                 alt="..."
+                                 style="border-radius: 50%; width: 200px; height: 175px; object-fit: cover;" />
+                            <h5 id='func_title2'>게시판 </h5>
+                            <p class="font-weight-light mb-0"
+                               id='func_content2'
+                               style='white-space: normal;'>
+                                ENTER 서비스 및 사용법과 관련해서 관리자에게 문의사항을 질문하는 게시판.
+                                사용자가 서비스를 사용하면서 의견을 공유할 수 있는 커뮤니티 게시판입니다.<br>마음껏 물어보세요 !
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">    <!-- 기능 3 -->
+                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                            <img class="img-fluid rounded-circle mb-3"
+                                 src="assets/img/testimonials-3.jpg"
+                                 alt="..."
+                                 style="border-radius: 50%; width: 200px; height: 175px; object-fit: cover;" />
+                            <h5 id='func_title3'>다양한 편의성 제공</h5>
+                            <p class="font-weight-light mb-0"
+                               id='func_content3'
+                               style='white-space: normal;'>
+                                - 분석 결과에 대한 코멘트를 작성하여 히스토리로 확인할 수 있습니다.<br>
+                                - 프롬프트 입력 메시지를 템플릿으로 저장해놨다가 바로 사용할 수 있습니다.<br>
+                                - 서비스 사용에 대한 가이드라인과 설명서를 확인할 수 있습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer 1 -->
+        <section class="call-to-action text-white text-center" 
+                 id="signup">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <h3 class="mb-4" style="color: white;">자 이제 <span style="color: #454997;">ENTER</span>를 사용할 준비가 되셨나요? </h3>
+
+                        <!-- 바로 시작하기! 버튼 -->
+                        <button id="promptButton" 
+                                type="button"
+                                class="btn btn-secondary">프롬프트 사용하기</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JS와 연동 -->
+        <script src="/js/common.js"></script>
+        <script src="/js/enter_introduction.js"></script>
+ 
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

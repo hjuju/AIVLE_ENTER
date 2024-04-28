@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" 
+          content="IE=edge">
+
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+
+   <link rel="stylesheet" 
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 글꼴(팀원이 추천하신 구글 폰트 적용)-->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" 
+          rel="stylesheet">
+
+
+    <!-- CSS와 연계 -->
+    <link rel="stylesheet"
+          href="/css/index.css" />
+
+    <!-- 구글 아이콘-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" 
+          rel="stylesheet">
+
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+    <!-- Axios CDN(Axios를 사용하기 위함) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- sweet alert -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
+    <title>ENTER 프롬프트</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Enter 로고 -->
+        <div style="height: 35px;">
+            <a href="/index.html" 
+                class="header-logo-link">
+                <img src="assets/img/ENTR_logo.png" 
+                alt="로고"
+                id="header-logo">
+            </a>
+        </div>
+
+        <div style="display: flex;">
+            <!-- 사용자 표시 -->
+            <a href="/mypage.html" 
+                class="header-link">
+                    <h3></h3>
+            </a>
+
+            <!-- 로그아웃 아이콘 -->
+            <button class='logout' 
+                    onclick='goLogout();'>
+                    <img src="assets/img/login_out.png" 
+                         style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+            </button>
+
+            <!-- 로그인 아이콘 -->
+            <button class='login' 
+                    onclick='goLogin();'>
+                    <img src="assets/img/login_out.png" 
+                         style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+            </button>
+        </div>
+
+    </header>
+    
+    <div class="screen">
+        <!-- Prompt Sidebar-->
+        <nav id="sidebar">
+            <div class="float-top">
+                <!-- 'New Chat' 팝업 레이아웃 --> 
+                <div id="new-chat-popup"
+                     class="popup"
+                     style="display: none;">
+                    <!-- 팝업 콘텐츠 -->
+                    <div class="popup-content">
+                        <!-- 나가기 -->
+                        <span class="close-button" 
+                              onclick="closePopup()">&times;</span>
+                        
+                        <!-- '새 채팅 시작' text -->
+                        <h3 style='font-size:25px; font-family:scd; font-weight:bold'>새 채팅 시작</h3>
+
+                        <form id="new-chat-form">
+                            <!-- '주제' input -->
+                            <input type="text" 
+                                    id="topic"
+                                    name="topic"
+                                    placeholder="주제" 
+                                    style="height: 40px; border: 1px solid black; border-radius: 5px; padding: 5px 10px; font-family:scd;"><br>
+
+                            <!-- '채팅방명' input -->                     
+                            <input type="text"
+                                    id="chatroom-name"
+                                    name="chatroom"
+                                    placeholder="채팅방명" 
+                                    style="height: 40px; border: 1px solid black; border-radius: 5px; padding: 5px 10px; font-family:scd;"><br>
+
+                            <!-- 오류 메시지 -->
+                            <div id="error-message" 
+                                style="display: none; color: red; margin:10px; font-family:scd;">
+                            </div> 
+                        </form>
+
+                        <!-- '생성' button -->
+                        <div style="width:200px; display: flex; justify-content: flex-end; margin-right:21px;">
+                            <button type="submit" 
+                                    style="font-family:scd;"
+                                    id = "btn_final"
+                                    onclick='generateChat(event)'>생성</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 간격 -->
+                <div style="height: 10px;"></div>
+                
+                <!-- 'New Chat' button  -->
+                <div class="sidebar-controls">
+                    <button class="new-chat"
+                            style='color: black; margin-top: 10px; margin: bottom 5px;'
+                            onclick="openPopup()">
+                            <i class="fa fa-plus" style="margin-right: 10px; color: white"></i>
+                            <span style="color: white">New Chat</span>
+                    </button>
+                </div>
+
+                <!-- '채팅 목록' text -->
+                <p class='topic'  
+                   style="color: black; font-weight: bold; margin:10px">채팅 목록</p>
+
+                <!-- 채팅 목록 -->
+                <ul class="conversations"> 
+                    <!-- 채팅 목록이 JS 코드로 동적으로 생성됩니다.-->
+                </ul>
+            </div>
+
+            <!-- User Menu-->
+            <div class="user-menu"
+                 style='margin-bottom:20px;'>
+                <!-- 엔터란? -->
+                <div class="menu1" 
+                     style='padding:10px;'
+                     onclick='question_enter();'>
+                    <img src="assets/img/what_enter.png" 
+                        style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+
+                    <span>엔터란?</span>
+                </div>
+
+                <!-- AI 설정 -->
+                <div class="menu2"
+                     style='padding:8px;'
+                     onclick='AIconfig()'>
+                    <img src="assets/img/ai_setting.png" 
+                         style="width: 25px; height: 25px; vertical-align: middle;">
+
+                     <span>AI 설정</span>
+                </div>
+
+                <!-- 문의 게시판 -->
+                <div class="menu3"
+                     style='padding:10px;'
+                     onclick='goInquiry();'>
+                    <img src="assets/img/board.png" 
+                        style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+
+                    <span>문의 게시판</span>
+                </div>
+
+                <!-- 로그인/로그아웃 -->
+                <div class="menu4"
+                     style='padding:10px;'
+                     onclick='goLogout();'>
+                     <img src="assets/img/login_out.png" 
+                          style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+
+                     <span>로그아웃</span>
+                </div>
+            </div>
+
+        </nav>
+ 
+        <!-- Prompt Main -->
+        <main>
+            <!-- 상단 -->
+            <div class="view new-chat-view">  
+            </div>
+
+            <div id="to-top" 
+                 onclick="toTop();">
+                <div class="material-icons">arrow_upward</div>
+            </div>
+
+            <div id="to-bottom" 
+                 onclick="toBottom();">
+                <div class="material-icons">arrow_downward</div>
+            </div>
+
+            <!-- 질문과 대답의 반복(History) 동적 데이터 -->
+            <div class="view conversation-view"
+                style="flex-grow: 1; height: auto; overflow-y: auto; margin: 0px; padding: 40px 40px 0; height: calc(100vh - 200.5px)">  
+                <!-- 질문과 대답의 반복 (History) 데이터가 JS 코드로 구현 -->
+            </div>
+
+            <!-- 하단 메시지 입력창 -->
+            <div id="message-form"
+                 style='display:none; margin: 20px 0 30px;'>                
+                <div class="message-wrapper">
+                    <!-- 메시지 입력 -->
+                    <textarea id="message"
+                              rows="1"
+                              placeholder="질문을 입력하고 ENTER만 치세요!"></textarea>
+
+                    <!-- 메시지 전송 아이콘 -->
+                    <button class="send-button">
+                        <img src="assets/img/enter_icon_color-removebg.png"
+                             width="32" height="32"
+                             alt="아이콘">
+                    </button>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- 기타 -->
+
+    <!-- 'AI 설정' 모달 -->
+    <div id="myModal"
+         class="modal"
+         style='display:none'>
+        <!-- 모달 내용 -->
+        <div class="modal-content">
+            <!-- 나가기 -->
+            <span class="close"
+                    onclick='AIconfig()'>&times;</span>
+
+            <!-- 'AI 설정' text -->
+            <h2> &nbsp;AI 설정</h2>
+
+            <!-- 간격 -->
+            <div style='height:20px'></div>
+
+            <!-- 모달 사이드바 & 내부 콘텐츠 -->
+            <div class="modal-view new-chat-view"
+                 style="display: flex; flex-direction: row">
+                <!-- 모달 사이드바 -->
+                <div class="sidebar-area">
+                    <!-- 크롤러 설정 섹션 -->
+                    <div class="section" 
+                         style='margin-bottom:19px; display: flex; align-items: center; cursor: pointer;'
+                         onclick="handleCrawlerClick()">
+                        <p id='crawler'
+                           style='font-size:15px;'>크롤러 설정</p>
+                    </div>
+
+                    <!-- 프롬프트 설정 섹션  -->
+                    <div class="section" 
+                         style='margin-bottom:19px; display: flex; align-items: center; cursor: pointer;'
+                         onclick="handlePromptClick()">
+                        <p id='prompt'
+                           style='font-size:15px;'>프롬프트 설정</p>
+                    </div>
+
+                     <!-- 레포트 설정 섹션  -->
+                     <div class="section" 
+                          style='margin-bottom:19px; display: flex; align-items: center; cursor: pointer;'
+                          onclick="handleReportClick()">
+                          <p id='report'
+                             style='font-size:15px;'>레포트 설정</p>
+                    </div>
+
+                    <!-- 모델 설정 섹션 -->
+                    <div class="section" 
+                         style='margin-bottom:19px; display: flex; align-items: center; cursor: pointer;'
+                         onclick='handleModelClick()'>
+                        <p id='modelSelection'
+                           style='font-size:15px;'>모델 설정</p>
+                    </div>
+
+                      <!-- 자주 쓰는 문구 섹션 -->
+                    <div class="section" 
+                         style='margin-bottom:19px; display: flex; align-items: center; cursor: pointer;'
+                         onclick='handleUseClick()'>
+                         <p id='frequentUse'
+                            style='font-size:15px; margin:0px 0px;'>자주 쓰는 문구</p>
+                    </div>
+                </div>
+
+                <!-- 모달 내부 콘텐츠  -->
+                <div class="content-area" 
+                     style="display: flex; justify-content: center; align-items: center;">
+                    
+                    <!-- AI 세팅 이미지 -->
+                    <div class="settings-img" style="text-align: center">
+                        <img src="/assets/img/ai_settings_img.png"/>
+                    </div>
+                    
+                    <!-- '크롤러 설정' 콘텐츠 -->
+                    <div class='popup1-content'
+                         style='display:none'>
+                         <!-- 동적으로 '대상 설정', '수집 현황', '크롤러 템플릿 설정' 버튼이 나온다. -->
+                    </div>
+
+                    <!-- '프롬프트 설정' 콘텐츠 -->
+                    <div class='popup2-content'
+                        style='display:none'>
+                        <!-- 동적으로 프롬프트 설정하는 내용으로 구성된다. -->
+                    </div>
+                    
+                    <!-- '레포트 설정' 콘텐츠 -->
+                    <div class='popup3-content'
+                         style='display:none'>
+                        <!-- 동적으로 레포트 설정하는 내용으로 구성된다. -->
+                    </div>
+
+                    <!-- '모델 설정' 콘텐츠 -->
+                    <div class="popup5-content"
+                         style='display:none'>
+                     <!-- 동적으로 모델 설정 가져오기 -->
+                    </div>
+
+                    <!-- '자주 쓰는 문구' 콘텐츠 -->
+                    <div class="popup4-content"
+                         style='display:none'>
+                    </div>
+                    <div class="message-btn-group"
+                        style='display:none;'>
+                     <!-- 동적으로 사용자의 자주 쓰는 문구 가져오기 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- context 메뉴 -->
+    <div id="contextMenu"
+         class="context-menu">
+        <ul>
+            <!-- 수정 -->
+            <li onclick="modify()" 
+                style="border-bottom: #dadada 1px solid;">수정</li>
+            
+            <!-- 삭제 -->
+            <li onclick="deleteChatRoom()">삭제</li>
+        </ul>
+    </div>
+
+    <!-- 채팅방명 수정 팝업--> 
+    <div id="update-popup"
+          class="popup"
+          style="display: none;">
+
+        <!-- 채팅방명 수정 팝업 -->
+        <div class="popup-content">
+            <!-- 나가기 -->
+            <span class="close-button" 
+                  onclick="closePopup()">&times;</span>
+ 
+            <!-- '채팅방명 변경' text -->
+            <h3 style='font-size:25px; font-family:scd; font-weight:bold'>채팅방명 변경 </h3>
+
+            <form id="update-chat-form">
+                <!-- '변경할 채팅방명' input -->
+                <input type="text"
+                    id="chatroom-name"
+                    name="chatroom"
+                    placeholder="변경할 채팅방명" 
+                    style="width:200px; height: 35px; border: 1px solid black; border-radius: 5px; padding: 5px 10px; font-family:scd;"><br>
+                
+                <!-- 오류 메시지를 위한 요소 -->
+                <div id="error-message" 
+                    style="display: none; color: red; margin:10px; font-family:scd;">
+                </div>   
+            </form>
+
+            <!-- '변경' button -->
+            <div style="width:230px; display: flex; justify-content: flex-end; margin-top: 10px; margin-right:25px;">
+                <button type="submit"
+                        style="font-family:scd;"
+                        id = "btn_final"
+                        onclick='editChatRoom()'>변경</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- '자주 쓰는 문구' 추가 팝업 -->
+    <div id="addFrequentMessagePopup" 
+         style="display:none;">
+        <!-- '자주 쓰는 문구' 추가 팝업 -->
+        <div class="popup-content">
+            <!-- 나가기 -->
+            <span class="close-button" 
+                  onclick="closeFrequentMessage()">&times;</span>
+
+            <!-- '자주 쓰는 문구' text -->
+            <h2 style='font-size:25px; font-family:scd; font-weight:bold'>자주 쓰는 문구 추가</h2>
+
+            <!-- '문구 제목' input -->
+            <input type="text"
+                   id="messageTitle"
+                   name="messageTitle"
+                   placeholder="문구 제목" 
+                   style="width:100%; height: 40px; border: 1px solid black; border-radius: 5px; padding: 5px 10px; font-family:scd;">
+    
+            <!-- '문구 내용' textarea -->
+            <textarea rows="4"
+                    id="messageContent"
+                    name="messageContent"
+                    placeholder="문구 내용" 
+                    style="margin-top: 5px; width:100%; resize: none; border: 1px solid black; border-radius: 5px; padding: 5px 10px; font-family:scd; resize:none; white-space: nowrap;"></textarea>
+
+            <!-- 오류 메시지 -->
+            <div id="errorMessage"
+                 style="display: none; color: red; margin-top: 10px; font-family:scd;">
+                 여기에 오류 메시지가 표시됩니다.
+            </div>
+
+            <!-- '추가' button -->
+            <div class="button-container"
+                 style='width:100%; display: flex; flex-direction: row; justify-content: flex-end; gap: 10px; margin-top: 5px;'>
+                <button style='font-family:scd;'
+                        onclick="submitFrequentMessage()">추가</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- '자주 쓰는 문구' 수정 팝업 -->
+    <div id="editFrequentMessagePopup"
+         style="display:none;">
+        <!-- '자주 쓰는 문구' 수정 팝업 -->
+        <div class="popup-content">
+            <!-- 나가기 -->
+            <span class="close-button" 
+                  onclick="closeEditFrequentMessage()">&times;</span>
+
+            <!-- '자주 쓰는 문구 수정' text -->
+            <h2>자주 쓰는 문구 수정</h2>
+            
+            <!-- '문구 제목' text -->
+            <input type="text"
+                   id="editMessageTitle"
+                   name="editMessageTitle"
+                   placeholder="문구 제목" 
+                   style="width:100%; height: 40px; border: 1px solid black; border-radius: 5px; padding: 5px 10px; font-family:scd;">
+    
+            <!-- '문구 내용' textarea -->
+            <textarea rows="4"
+                    id="editMessageContent"
+                    name="editMessageContent"
+                    placeholder="문구 내용" 
+                    style="margin-top: 5px; width:100%; resize: none; border: 1px solid black; border-radius: 5px; padding: 5px 10px; font-family:scd; resize:none; white-space: nowrap;"></textarea>
+
+            <!-- '수정' button -->
+            <div class="button-container"
+                 style='width:100%; display: flex; flex-direction: row; justify-content: flex-end; gap: 10px;'>
+                <button onclick="submitEditFrequentMessage()"
+                        data-template-id=""
+                        style='font-family:scd;'
+                        id="editSubmitButton">수정</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS와 연계 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

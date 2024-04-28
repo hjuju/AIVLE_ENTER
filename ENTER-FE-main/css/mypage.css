@@ -1,0 +1,231 @@
+@font-face {
+  font-family: 'scd';
+  src: url('../assets/fonts/SCDream5.otf') format('truetype');
+}
+
+*{
+  box-sizing: border-box;
+  outline: none; 
+}
+
+header {
+    width: 100%; 
+    height:50px;
+    margin: 0; 
+    background-color: white; 
+    position: relative;
+    padding: 7.5px 0; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    top: 0; 
+    left: 0; 
+    z-index: 100;
+    align-items: center; 
+    justify-content: space-between; 
+    display: flex; 
+}
+
+body {
+  font-family: 'scd';
+  margin: 0;
+  overflow: auto;
+}
+
+#header-logo {
+    height: 35px; 
+    margin-left:20px;
+}
+
+.header-logo-link {
+  height: 35px;
+}
+
+.header-link {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+
+.header-link h3 {
+    transition: box-shadow 0.3s ease; 
+    font-size: 13px;
+}
+
+header .logout {
+  background-color: transparent;
+  display: none;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 13px;
+}
+header .logout:hover {
+  background-color: transparent;
+}
+
+	
+.mc {
+    padding: 20px; 
+    margin: auto; 
+    width: 100% !important; 
+    max-width: none;
+  }
+  
+.common-button-style {
+    width: 300px; 
+    height: 60px;
+    padding: 10px 20px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #707070; 
+    color: white; 
+    font-size: 16px; 
+    cursor: pointer; 
+}
+  
+
+@media (max-width: 768px) {
+  .mc {
+      padding: 10px;
+      max-width: 100%;
+  }
+}
+  
+.image-container1, .image-container2 {
+  width: 100%;           
+}
+
+.myInfoText, .history, .inquiryList {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700; 
+  text-align: center;
+  font-size: 24px; 
+}
+
+footer {
+  margin-top: 20px;    
+  margin-bottom: 20px; 
+}
+
+.content {
+  position: relative;
+  height: calc(100vh - 50px);
+  width: 100%;
+}
+
+.content-header {
+  display: flex;
+  width: 100%;
+  height: 180px;
+  background-color: #454997;
+}
+
+.content-header-mypage {
+  width: 150px;
+  margin-left: 50px;
+  color: white;
+  font-size: 24px;
+}
+
+.content-header-mypage-info {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: center;
+}
+.content-header-username-area {
+  margin-bottom: 15px;
+}
+
+.content-header-username {
+  width: 400px;
+  text-align: right;
+  color: white;
+  font-size: 48px;
+}
+
+.content-header-plus {
+  padding-left: 10px;
+  font-size: 20px;
+  color: #b5b5b5;
+}
+
+.content-header-usertype {
+  font-size: 20px;
+  color: rgb(255, 158, 158);
+  margin-left: 10px;
+}
+
+.content-body {
+  padding:  20px 0;
+  position: relative;
+  display: flex;
+  width: 65vw;
+  min-height: calc(100vh - 230px);
+  margin: auto;
+  align-items: center;
+  justify-content: center; 
+}
+.content-body .inner {
+  width: 100%;
+}
+
+
+.content-wrap {
+  width: 100%;
+}
+
+#mypageId {
+  border-top: 3px solid;
+}
+
+#mypageUseremail {
+  border-bottom: 3px solid;
+}
+
+.content-body-item {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  max-height: 9vh;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid;
+}
+
+.content-body-item-header {
+  width: 300px;
+  height: 30px;
+  text-align: center;
+  border-right: 1px solid;
+}
+
+.content-body-item-body1, .content-body-item-body2, .content-body-item-body3, .content-body-item-body4 {
+  width: 100%;
+  margin-left: 30px;
+}
+
+.content-button-section {
+  width: 100%;
+  text-align: right;
+}
+
+button.edit-password-button, button.withdraw-button {
+  margin-top: 15px;
+  border: 0;
+  outline: none;
+  font-size: 16px;
+  background: #454997;
+  color: white;
+  padding: 10px 23px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: 'scd';
+}
+button.edit-password-button {
+  margin-right: 10px;
+}
+  
+  
+  

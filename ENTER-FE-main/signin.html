@@ -1,0 +1,209 @@
+<!-- 일반 로그인, 소셜 로그인 페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ENTER 로그인</title>
+
+    <!-- 글꼴 (구글 폰트 적용 ) -->
+    <link rel="preconnect"
+           href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <!-- 글꼴(팀원이 추천하신 구글 폰트 적용)-->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" 
+          rel="stylesheet">
+
+    <!--                       -->
+    <link rel="icon" 
+          href="./assets/favicon.ico">
+
+        <!-- CSS와 연계 -->
+    <link rel="stylesheet"
+          href="./css/signin.css">
+
+    <!-- Axios CDN(Axios를 사용하기 위함) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- sweet alert -->
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Enter 로고 -->
+        <a href="/index.html">
+            <img src="assets/img/ENTR_logo.png" 
+                 alt="로고"
+                 id="header-logo">
+        </a>
+    </header>
+
+    <!-- body -->
+    <div class="member">
+        <div class="inner">
+            <!-- '로그인' text -->
+            <h1 class="logo">로그인</h1>
+            
+            <form>
+                <!-- '아이디를 입력해주세요' text -->
+                <div class="field">
+                    <div class="input-group mb-3">
+                        <input type="text"
+                                id='input_id'
+                                class="form-control"
+                                aria-label="Username"
+                                placeholder="아이디를 입력해주세요."
+                                autocomplete='off'/>
+                    </div>
+                </div>
+
+                <!-- '비밀번호를 입력해주세요' text -->
+                <div class="field">
+                    <input id='input_password'
+                           class="userpw"
+                           type="password"
+                           placeholder="비밀번호를 입력해주세요."
+                           autocomplete='off'/>
+                </div>
+            </form>
+
+            <div class="error-message" id="error"></div>
+
+            <!-- 로그인 버튼 -->
+            <input type="submit"
+                    value="로그인"
+                    style="background-color: #808080; color: white; border-radius:5px;"
+                    class="login-button"
+                    onclick="signin();">
+
+            <!-- 간격 -->
+            <div style="margin-top: 20px; margin-bottom: 20px;"></div> 
+
+            <!-- 회원가입 하기, 아이디 찾기, 비밀번호 찾기 -->
+            <div class="links-container">
+                <a href="/findId.html">아이디 찾기</a>
+                <a href="/changePassword.html">비밀번호 변경</a>
+            </div>
+
+            <button class="signup-button"
+                    onclick="location.href='/privacyPolicy.html'">
+                <p>ENTER가 처음이신가요? <span class="navy">가입하기</span></p>
+            </button>
+
+
+            <!-- 소셜 로그인 버튼 -->
+            <div class="social-group">
+                <h2 class="tit">소셜 로그인</h2>
+                <ul class="social-list">
+                    <li><button class='btn-social-kakao'
+                                onclick='location.href="https://kauth.kakao.com/oauth/authorize?client_id=a778e71aaad74d0df17241951f45338f&redirect_uri=http://localhost:5500/signin.html?type=kakao&response_type=code"'></button></li>
+                    <li><button class='btn-social-google'
+                                onclick='location.href="https://accounts.google.com/o/oauth2/v2/auth?client_id=492254076377-4viafitd0vqar0in1f0apl5plp267l8j.apps.googleusercontent.com&redirect_uri=http://localhost:5500/signin.html?type=google&response_type=code&scope=email profile"'></button></li>
+                    <li><button class='btn-social-naver'
+                                onclick='location.href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=2JN0dDz_txeMZFNiE4Kf&state=false&redirect_uri=http://localhost:5500/signin.html?type=naver"'></button></li>
+                </ul>
+            </div>
+
+
+            <!-- footer -->
+            <div class="member-footer">
+                <div>
+                    <a href="#none">이용약관</a>
+
+                    <a href="#none">개인정보처리방침</a>
+
+                    <a href="#none">책임의 한계와 법적고지</a>
+
+                    <a href="#none">회원정보 고객센터</a>
+                </div>
+
+                <span><a href="#none">ENTER Corp.</a></span>
+            </div>
+        
+        </div>
+    </div>
+
+    <!-- 소셜 로그인 모달창 -->
+    <div id="socialModal"
+          class="modal">
+        <div class="modal-content">
+            <span class="close"
+                  id="closeModalBtn">&times;</span>
+            <div class="modal-screen">
+                <div>
+                    <div class="img-container">
+                        <img src="/assets/img/fail_social.png"/>
+                    </div>
+                    
+                    <div class="modal-btn-group">
+                        <button id="syncAccountBtn" 
+                                class="btn">기존 회원 연동</button>
+                        <button id="signUpBtn"
+                                class="btn">회원 가입</button>
+                    </div>
+
+                    <div class="sync-login"
+                         id="syncView">
+                        <div>
+                            <p>연동할 계정으로 로그인 해주세요.</p>
+                            <form>
+                                <input type="hidden" 
+                                       id="socialType"
+                                       value="" />
+                                <input type="hidden" 
+                                       id="socialId" 
+                                       value="" />
+
+                                <div class="field">
+                                    <input type="text"
+                                            id='syncId'
+                                            placeholder="아이디를 입력해주세요."
+                                            autocomplete='off'/>
+                                </div>
+                    
+                                <div class="field">
+                                    <input type="password"
+                                            id='syncPassword'
+                                            placeholder="비밀번호를 입력해주세요."
+                                            autocomplete='off'/>
+                                </div>
+                                <div class="error-message"
+                                      id="error-modal"></div>
+                                <button type="button" 
+                                        class="login-button"
+                                        onclick="syncLogin();">로그인</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS와 연동 -->
+    <script src="/js/common.js"></script>
+    <script src="/js/signin.js"></script>
+</body>
+</html>

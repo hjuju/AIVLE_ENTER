@@ -1,0 +1,158 @@
+<!-- 마이 페이지 화면 -->
+<!DOCTYPE html>
+<html lang="en">
+<!-- head-->
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <meta name="description" 
+              content="" />
+
+        <meta name="author"
+              content="" />
+
+        <title>ENTER 마이페이지</title>
+
+        <!-- 글꼴 (구글 폰트 적용 ) -->
+        <link rel="preconnect"
+              href="https://fonts.googleapis.com">
+
+        <link rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+              rel="stylesheet">
+
+        
+        <!-- 글꼴(팀원이 추천하신 구글 폰트 적용)-->
+        <link rel="preconnect"
+              href="https://fonts.googleapis.com">
+
+        <link rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@700&display=swap" 
+              rel="stylesheet">
+       
+        <!-- Favicon-->
+        <link rel="icon"
+              type="image/x-icon"
+              href="assets/favicon.ico" />
+
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" 
+              rel="stylesheet"
+              type="text/css" />
+        
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+              rel="stylesheet"
+              type="text/css" />
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/mypage.css"
+              rel="stylesheet" />
+            
+        <!-- Axios CDN(Axios를 사용하기 위함) -->
+       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+      <!-- sweet alert -->
+      <link rel="stylesheet" 
+            href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Enter 로고 -->
+        <div style="height: 35px;">
+            <a href="/index.html"
+               class="header-logo-link">
+                <img src="assets/img/ENTR_logo.png" 
+                alt="로고"
+                id="header-logo">
+            </a>
+        </div>
+
+        <div style="display: flex;">
+            <!-- 사용자 정보 표시 -->
+            <a href="/mypage.html"
+               class="header-link">
+                <h3></h3>
+            </a>
+            
+            <!-- 로그 아웃 아이콘 -->
+            <button class='logout' 
+                    onclick='goLogout();'>
+                <img src="assets/img/login_out.png" 
+                     style="width: 20px; height: 20px; vertical-align: middle; margin-right:1px;">
+            </button>
+        </div>
+    </header>
+
+      <!-- Body-->
+      <div class="content">
+            <div class="content-header">
+                  <div id="mypageUserinfo" 
+                       class="content-header-mypage-info">
+                        <div class="content-header-username-area">
+                              <span class="content-header-username"></span>
+                              <span class="content-header-plus">님의 정보</span>
+                              <span class="content-header-usertype"></span>
+                        </div>
+                  </div>
+            </div>
+            
+            <div class="content-body">
+                  <div class="inner">
+                        <h3>기본 회원정보</h3>
+                        <div class="content-wrap">
+                              <div id="mypageId"
+                                   class="content-body-item">
+                                    <p class="content-body-item-header">아이디</p>
+                                    <p class="content-body-item-body1"></p>
+                              </div>
+
+                              <div id="mypagePassword" 
+                                    class="content-body-item">
+                                    <p class="content-body-item-header">비밀번호</p>
+                                    <p class="content-body-item-body2"></p>                                    
+                              </div>
+
+                              <div id="mypageUsername"
+                                   class="content-body-item">
+                                    <p class="content-body-item-header">이름</p>
+                                    <p class="content-body-item-body3"></p>
+                              </div>
+
+                              <div id="mypageUseremail"
+                                   class="content-body-item">
+                                    <p class="content-body-item-header">이메일</p>
+                                    <p class="content-body-item-body4"></p>
+                              </div>
+                        </div>
+                        <div class="content-button-section">
+                              <button class="edit-password-button"
+                                      onclick="changePassword()">비밀번호 변경</button>
+                              <button class="withdraw-button" 
+                                      onclick="withdrawAccount()"
+                                      type="button">회원 탈퇴</button>
+                        </div>
+                  </div>     
+            </div>
+                  
+            </div>
+      </div>
+
+      <!-- Bootstrap core JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+      <!-- Core theme JS-->
+      <script src="/js/common.js"></script>
+      <script src="/js/mypage.js"></script>
+    </body>
+</html>
